@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://djkfuush3epxf"]
+[gd_scene load_steps=10 format=3 uid="uid://djkfuush3epxf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oua5g"]
 albedo_color = Color(0.807843, 0.831373, 0.854902, 1)
@@ -8,26 +8,6 @@ material = SubResource("StandardMaterial3D_oua5g")
 size = Vector3(2, 2, 0.1)
 
 [sub_resource type="BoxShape3D" id="3"]
-size = Vector3(2, 2, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y74l4"]
-albedo_color = Color(0.807843, 0.831373, 0.854902, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_s4ecn"]
-material = SubResource("StandardMaterial3D_y74l4")
-size = Vector3(0.1, 2, 2)
-
-[sub_resource type="BoxShape3D" id="5"]
-size = Vector3(0.1, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxsai"]
-albedo_color = Color(0.807843, 0.831373, 0.854902, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_jdsmf"]
-material = SubResource("StandardMaterial3D_yxsai")
-size = Vector3(2, 2, 0.1)
-
-[sub_resource type="BoxShape3D" id="7"]
 size = Vector3(2, 2, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utr5t"]
@@ -61,22 +41,6 @@ mesh = SubResource("BoxMesh_5fkli")
 [node name="N_Collision" type="CollisionShape3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("3")
-
-[node name="E" type="MeshInstance3D" parent="StaticBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-mesh = SubResource("BoxMesh_s4ecn")
-
-[node name="E_Collision" type="CollisionShape3D" parent="StaticBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-shape = SubResource("5")
-
-[node name="S" type="MeshInstance3D" parent="StaticBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
-mesh = SubResource("BoxMesh_jdsmf")
-
-[node name="S_Collision" type="CollisionShape3D" parent="StaticBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
-shape = SubResource("7")
 
 [node name="W" type="MeshInstance3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
