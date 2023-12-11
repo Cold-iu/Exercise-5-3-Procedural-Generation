@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bltoa0v7ud17a"]
+
+[ext_resource type="PackedScene" uid="uid://cst2naun4bf0d" path="res://Assets/Weapon_01.fbx" id="1_lh00y"]
+[ext_resource type="Script" path="res://Player/Pistol.gd" id="2_llrum"]
+[ext_resource type="ArrayMesh" uid="uid://btre52j0ey0in" path="res://Assets/muzzleflash.obj" id="3_pfpyq"]
+[ext_resource type="Material" uid="uid://cpfkeqwsrtbpu" path="res://Muzzle.tres" id="4_ulprl"]
+[ext_resource type="Texture2D" uid="uid://cc05ex1p5j58q" path="res://Assets/PNG/HUD/crosshair_white_small.png" id="5_sgsh3"]
+
+[node name="Pistol" instance=ExtResource("1_lh00y")]
+script = ExtResource("2_llrum")
+
+[node name="Muzzle" type="Node3D" parent="." index="0"]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 0.9, -0.127802, 0.3)
+visible = false
+
+[node name="Muzzleflash" type="MeshInstance3D" parent="Muzzle" index="0"]
+transform = Transform3D(2.86603e-16, 6.55671e-09, -0.15, 0.15, -6.55671e-09, 0, -6.55671e-09, -0.15, -6.55671e-09, 0.265339, 0.0686123, 0)
+mesh = ExtResource("3_pfpyq")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ulprl")
+surface_material_override/1 = ExtResource("4_ulprl")
+surface_material_override/2 = ExtResource("4_ulprl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Muzzle" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202097, 0.0724857, 0)
+light_color = Color(1, 1, 0.431373, 1)
+light_energy = 4.716
+omni_range = 29.19
+omni_attenuation = 1.27456
+
+[node name="RootNode" parent="." index="1"]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 0.9, -0.127802, 0.3)
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 0.15
+one_shot = true
+
+[node name="Aim" type="RayCast3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34351, -0.00662723, 0.0164097)
+target_position = Vector3(20, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="4"]
+transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 1.34351, -0.00662723, 0.0164097)
+texture = ExtResource("5_sgsh3")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

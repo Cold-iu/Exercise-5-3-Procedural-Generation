@@ -1,5 +1,15 @@
 extends Node
 
+var inventory = []
+
+
+func add_item(item):
+	inventory.append(item)
+	
+func use_item(item):
+	if item in inventory:
+		pass
+
 func _ready():
 	process_mode = PROCESS_MODE_ALWAYS		# global should never be paused
 
@@ -15,3 +25,4 @@ func _unhandled_input(event):
 			else:
 				menu.hide()
 				get_tree().paused = false
+	

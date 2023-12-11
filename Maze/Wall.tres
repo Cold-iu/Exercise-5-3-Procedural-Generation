@@ -1,4 +1,6 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dr8rmy3g66wta"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dr8rmy3g66wta"]
+
+[ext_resource type="Texture2D" uid="uid://o842pb1m4gvb" path="res://Assets/Textures/rock_wall_10_diff_4k.jpg" id="1_8l7dw"]
 
 [resource]
-albedo_color = Color(0.807843, 0.831373, 0.854902, 1)
+albedo_texture = ExtResource("1_8l7dw")

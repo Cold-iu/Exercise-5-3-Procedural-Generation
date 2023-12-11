@@ -1,4 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://kd0xk1b3mrds"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://kd0xk1b3mrds"]
+
+[ext_resource type="Texture2D" uid="uid://c1y1s8nncm0vt" path="res://Assets/Textures/rocks_ground_02_col_4k.jpg" id="1_vjoh7"]
 
 [resource]
-albedo_color = Color(0.286275, 0.313726, 0.341176, 1)
+albedo_color = Color(0.238281, 0.171875, 0.117188, 1)
+albedo_texture = ExtResource("1_vjoh7")
+metallic = 0.78
+roughness = 0.66

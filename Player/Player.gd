@@ -5,7 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SCROLL_SPEED = 1.0
 const MOUSE_SENSITIVITY = 0.002
-const MOUSE_RANGE = 1.2
+const MOUSE_RANGE = .5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -28,7 +28,14 @@ func _physics_process(delta):
 			$Overhead.current = true
 			
 		
-
+	if Input.is_action_just_pressed("shoot"):
+		var weapons = $Pivot/Weapon
+		for w in weapons.get_children():
+			if w.has_method("shoot"):
+				w.shoot()
+				print("Just shot")
+	
+	
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -39,3 +46,19 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	
+
+			
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _on_pickup_radius_area_entered(area):
+	if area.name == "Key":
+		print("area entered:", area.name)
+		Global.add_item(area)
+		area.queue_free()
+		print(Global.inventory)
+	elif area.name == "Victory":
+		get_tree().quit()
+		# Replace with function body.

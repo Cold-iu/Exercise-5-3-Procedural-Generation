@@ -1,5 +1,12 @@
 extends Node3D
 
+
+var has_key = false
+var keyTile = Vector2()
+var has_enemy = false
+var enemyTile = Vector2()
+
+
 const N = 1 					# binary 0001
 const E = 2 					# binary 0010
 const S = 4 					# binary 0100
@@ -31,11 +38,15 @@ var tiles = [
 	,preload("res://Maze/Tile13.tscn")
 	,preload("res://Maze/Tile14.tscn")
 	,preload("res://Maze/Tile15.tscn")
+	,preload("res://Maze/Victory.tscn")
 ]
 
+
+
+
 var tile_size = 2 						# 2-meter tiles
-var width = 20  						# width of map (in tiles)
-var height = 12  						# height of map (in tiles)
+var width = 10  						# width of map (in tiles)
+var height = 6  						# height of map (in tiles)
 
 func _ready():
 	randomize()
@@ -52,6 +63,10 @@ func check_neighbors(cell, unvisited):
 func make_maze():
 	var unvisited = []  # array of unvisited tiles
 	var stack = []
+	
+	var victoryTilePosition = Vector2(randi() % width, randi() % height)
+	var enemyTile = Vector2(randi() % width, randi() % height)
+	
 	# fill the map with solid tiles
 	for x in range(width):
 		map.append([])
@@ -59,12 +74,22 @@ func make_maze():
 		for y in range(height):
 			unvisited.append(Vector2(x, y))
 			map[x][y] = N|E|S|W 		# 15
-	var current = Vector2(0, 0)
+			
+	var current = Vector2(0,0)
 	unvisited.erase(current)
+	
 	while unvisited:
 		var neighbors = check_neighbors(current, unvisited)
 		if neighbors.size() > 0:
 			var next = neighbors[randi() % neighbors.size()]
+			if !has_key and randf() < .05:
+				keyTile = next
+				has_key = true
+				print("Key placed at:", keyTile)
+			if !has_enemy and randf() < .2:
+				enemyTile = next
+				has_enemy = true
+				print("Enemy placed at:", enemyTile)
 			stack.append(current)
 			var dir = next - current
 			var current_walls = map[current.x][current.y] - cell_walls[dir]
@@ -75,9 +100,45 @@ func make_maze():
 			unvisited.erase(current)
 		elif stack:
 			current = stack.pop_back()
+	map[0][0] &= N|E|S|W
+	map[9][height-1] &= N|E|W
+	
+	
+	
+	var victoryTile = tiles[-1].instantiate()
+	victoryTile.position = Vector3(victoryTilePosition.x * tile_size, 0, victoryTilePosition.y * tile_size)
+	victoryTile.name = "Victory"
+	add_child(victoryTile)
+	print("Victory Tile instantiated at:", victoryTile.position)
+	
 	for x in range(width):
 		for z in range(height):
-			var tile = tiles[map[x][z]].instantiate()
-			tile.position = Vector3(x*tile_size,0,z*tile_size)
+			
+			var tileIndex = map[x][z]
+			if tileIndex < 0 or tileIndex >= len(tiles):
+				print("Invalid tile index at", x, z, ":", tileIndex)
+				continue
+			var tile = tiles[tileIndex].instantiate()
+			tile.position = Vector3(x * tile_size, 0, z * tile_size)
 			tile.name = "Tile_" + str(x) + "_" + str(z)
 			add_child(tile)
+			print("Tile instantiated at:", tile.position)
+
+				
+	if has_key:
+		var key = preload("res://Maze/key.tscn").instantiate()
+		key.position = Vector3(keyTile.x * tile_size, 0, keyTile.y * tile_size)
+		key.name = "Key"
+		add_child(key)
+		print("Key instantiated at:", key.position)
+	else:
+		print("No key placed.")
+	if has_enemy:
+		var enemy = preload("res://Maze/sculpture.tscn").instantiate()
+		enemy.position = Vector3(enemyTile.x * tile_size, 0, enemyTile.y * tile_size)
+		enemy.name = "Enemy"
+		add_child(enemy)
+		print("Enemy instantiated at:", enemy.position)
+	else:
+		print("No enemy placed.")
+		

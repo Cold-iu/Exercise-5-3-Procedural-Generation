@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://qqy1lcsmm243"]
+
+[ext_resource type="Script" path="res://Maze/Victory.gd" id="1_bgkm1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqgch"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h61ua"]
+material = SubResource("StandardMaterial3D_rqgch")
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ri0w8"]
+size = Vector3(2, 0.12, 2)
+
+[sub_resource type="BoxShape3D" id="12"]
+size = Vector3(2, 0.1, 2)
+
+[node name="Tile" type="Node3D"]
+script = ExtResource("1_bgkm1")
+
+[node name="StaticBody" type="StaticBody3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="StaticBody"]
+mesh = SubResource("BoxMesh_h61ua")
+
+[node name="Win_area" type="Area3D" parent="StaticBody/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody/Ground/Win_area"]
+shape = SubResource("BoxShape3D_ri0w8")
+
+[node name="Ground_Collision" type="CollisionShape3D" parent="StaticBody"]
+shape = SubResource("12")
+
+[connection signal="body_entered" from="StaticBody/Ground/Win_area" to="." method="_on_win_area_body_entered"]

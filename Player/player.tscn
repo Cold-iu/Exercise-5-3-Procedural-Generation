@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://nqi2skbi8o2t"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_f6rlo"]
+[ext_resource type="PackedScene" uid="uid://bltoa0v7ud17a" path="res://Player/pistol.tscn" id="2_ttie7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8a367"]
+albedo_color = Color(0.133333, 0.545098, 0.901961, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_n6plb"]
+material = SubResource("StandardMaterial3D_8a367")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvm3i"]
+albedo_color = Color(1, 0.878431, 0.4, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_a3j76"]
+material = SubResource("StandardMaterial3D_yvm3i")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vang0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxw1t"]
+margin = 0.001
+size = Vector3(0.8, 0.2, 0.8)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_atp51"]
+
+[sub_resource type="Animation" id="Animation_uc2hj"]
+resource_name = "Attack"
+
+[sub_resource type="Animation" id="Animation_kthbv"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ouxe"]
+_data = {
+"Attack": SubResource("Animation_uc2hj"),
+"RESET": SubResource("Animation_kthbv")
+}
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1, -0.25)
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_f6rlo")
+
+[node name="MeshInstance" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_n6plb")
+
+[node name="Nose" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, -4.37114e-08, 4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, 0, 1.3, -0.5)
+mesh = SubResource("PrismMesh_a3j76")
+
+[node name="Body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vang0")
+
+[node name="Feet" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("BoxShape3D_pxw1t")
+
+[node name="Pivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.721867)
+
+[node name="Weapon" type="Node3D" parent="Pivot"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Pistol" parent="Pivot/Weapon" instance=ExtResource("2_ttie7")]
+
+[node name="Overhead" type="Camera3D" parent="."]
+transform = Transform3D(1, -6.97574e-16, -1.5246e-23, -1.5246e-23, -4.37114e-08, 1, -6.97574e-16, -1, -4.37114e-08, 0, 6, 2.08165e-12)
+current = true
+fov = 135.9
+
+[node name="Pickup_Radius" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup_Radius"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00434, 0)
+shape = SubResource("CapsuleShape3D_atp51")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8ouxe")
+}
+
+[connection signal="area_entered" from="Pickup_Radius" to="." method="_on_pickup_radius_area_entered"]

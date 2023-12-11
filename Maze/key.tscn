@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://co6aawb1n1epi"]
+
+[ext_resource type="Script" path="res://Maze/key.gd" id="1_okkxs"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_55ac4"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qd8fi"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Key" type="Area3D" groups=["Pickup"]]
+script = ExtResource("1_okkxs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_55ac4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qd8fi")
