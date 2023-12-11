@@ -1,4 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://4cibi21ejgoy"]
+[gd_scene load_steps=12 format=3 uid="uid://4cibi21ejgoy"]
+
+[ext_resource type="Material" uid="uid://dr8rmy3g66wta" path="res://Maze/wall.tres" id="1_x4i2r"]
+[ext_resource type="Material" uid="uid://kd0xk1b3mrds" path="res://Maze/floor.tres" id="2_kl7og"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrwg5"]
 albedo_color = Color(0.807843, 0.831373, 0.854902, 1)
@@ -37,6 +40,7 @@ size = Vector3(2, 0.1, 2)
 [node name="S" type="MeshInstance3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 mesh = SubResource("BoxMesh_edudh")
+surface_material_override/0 = ExtResource("1_x4i2r")
 
 [node name="S_Collision" type="CollisionShape3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
@@ -45,6 +49,7 @@ shape = SubResource("7")
 [node name="W" type="MeshInstance3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
 mesh = SubResource("BoxMesh_r7mj2")
+surface_material_override/0 = ExtResource("1_x4i2r")
 
 [node name="W_Collision" type="CollisionShape3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
@@ -52,6 +57,7 @@ shape = SubResource("9")
 
 [node name="Ground" type="MeshInstance3D" parent="StaticBody"]
 mesh = SubResource("BoxMesh_pq13t")
+surface_material_override/0 = ExtResource("2_kl7og")
 
 [node name="Ground_Collision" type="CollisionShape3D" parent="StaticBody"]
 shape = SubResource("12")
