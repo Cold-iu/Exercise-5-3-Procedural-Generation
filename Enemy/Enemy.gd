@@ -28,6 +28,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func die():
+	Global.update_kills(1)
 	dying = true
 	$AnimationPlayer.play("Death")
 	velocity = Vector3.ZERO

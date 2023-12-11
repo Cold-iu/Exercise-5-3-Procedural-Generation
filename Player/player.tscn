@@ -86,6 +86,7 @@ libraries = {
 }
 
 [node name="Pickup_Timer" type="Timer" parent="."]
+process_mode = 3
 wait_time = 2.0
 one_shot = true
 

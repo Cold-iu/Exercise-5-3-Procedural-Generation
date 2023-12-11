@@ -8,8 +8,8 @@ const MOUSE_SENSITIVITY = 0.002
 const MOUSE_RANGE = .5
 
 var can_drop = true
-var health = 2
 
+	
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -36,6 +36,7 @@ func _physics_process(delta):
 		else:
 			$Overhead.current = true
 			
+	
 		
 	if Input.is_action_just_pressed("shoot"):
 		var weapons = $Pivot/Weapon
@@ -83,8 +84,8 @@ func _on_pickup_timer_timeout():
 	can_drop = true # Replace with function body.
 
 func die():
-	health -= 1
-	print(health)
-	if health <= 0:
+	Global.update_health(1)
+	print(Global.health)
+	if Global.health <= 0:
 		get_tree().change_scene_to_file("res://UI/end_game.tscn")
 	

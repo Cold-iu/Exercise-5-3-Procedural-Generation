@@ -1,6 +1,8 @@
 extends Node
 
 var inventory = []
+var health = 3
+var kills = 0
 
 
 func add_item(item):
@@ -11,6 +13,7 @@ func use_item(item):
 		pass
 
 func _ready():
+	
 	process_mode = PROCESS_MODE_ALWAYS		# global should never be paused
 
 func _unhandled_input(event):
@@ -28,3 +31,18 @@ func _unhandled_input(event):
 				get_tree().paused = false
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+
+func update_kills(k):
+	kills += k
+	var HUD = get_node_or_null("/root/Game/UI/HUD")
+	if HUD != null:
+		HUD.update_score()
+
+func update_health(h):
+	health -= h
+	var HUD = get_node_or_null("/root/Game/UI/HUD")
+	if HUD != null:
+		HUD.update_health()
+	if health <= 0:
+		pass
+		
