@@ -128,5 +128,10 @@ grow_vertical = 2
 text = "Quit
 "
 
+[node name="Enemy2" parent="." instance=ExtResource("5_3bm6d")]
+
+[node name="Enemy3" parent="." instance=ExtResource("5_3bm6d")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 8.44136, 1.62096, -10.8134)
+
 [connection signal="pressed" from="UI/Pause/Restart" to="UI/Pause" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Pause/Quit" to="UI/Pause" method="_on_quit_pressed"]

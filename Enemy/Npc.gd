@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 var d = 0
 var dialogue = [
-	"Testing..."
-	,"Testing Testing"
-	,"TESTING!!!!!!"
+	"Awesome you escaped the maze..."
+	,"Be careful"
+	,"I heard there was a zombie in the woods"
 
 ]
 
@@ -18,7 +18,6 @@ func _on_area_3d_body_entered(body):
 	if d < dialogue.size():
 		$Dialogue.show()
 		$Dialogue/Control/Label.text = dialogue[d]
-		d += 1
 		$Dialogue/Timer.start()
 	else:
 		print("No more dialogue")
