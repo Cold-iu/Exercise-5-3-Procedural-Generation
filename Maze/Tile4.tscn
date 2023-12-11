@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://brgvbgorivt5y"]
+[gd_scene load_steps=10 format=3 uid="uid://brgvbgorivt5y"]
+
+[ext_resource type="Texture2D" uid="uid://o842pb1m4gvb" path="res://Assets/Textures/rock_wall_10_diff_4k.jpg" id="1_q1470"]
+[ext_resource type="Texture2D" uid="uid://c1y1s8nncm0vt" path="res://Assets/Textures/rocks_ground_02_col_4k.jpg" id="2_sv363"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3q70r"]
 size = Vector3(2, 2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xy47"]
+albedo_texture = ExtResource("1_q1470")
 
 [sub_resource type="BoxShape3D" id="7"]
 size = Vector3(2, 2, 0.1)
@@ -13,6 +19,9 @@ albedo_color = Color(0.286275, 0.313726, 0.341176, 1)
 material = SubResource("StandardMaterial3D_yfy17")
 size = Vector3(2, 0.1, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcbrf"]
+albedo_texture = ExtResource("2_sv363")
+
 [sub_resource type="BoxShape3D" id="12"]
 size = Vector3(2, 0.1, 2)
 
@@ -23,6 +32,7 @@ size = Vector3(2, 0.1, 2)
 [node name="S" type="MeshInstance3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 mesh = SubResource("BoxMesh_3q70r")
+surface_material_override/0 = SubResource("StandardMaterial3D_4xy47")
 
 [node name="S_Collision" type="CollisionShape3D" parent="StaticBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
@@ -30,6 +40,7 @@ shape = SubResource("7")
 
 [node name="Ground" type="MeshInstance3D" parent="StaticBody"]
 mesh = SubResource("BoxMesh_rufr0")
+surface_material_override/0 = SubResource("StandardMaterial3D_dcbrf")
 
 [node name="Ground_Collision" type="CollisionShape3D" parent="StaticBody"]
 shape = SubResource("12")
