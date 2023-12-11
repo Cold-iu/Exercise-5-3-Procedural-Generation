@@ -5401,6 +5401,10 @@ shape = SubResource("BoxShape3D_0veff")
 wait_time = 5.0
 one_shot = true
 
+[node name="hit" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98916, 0)
+target_position = Vector3(0, 0, -1)
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

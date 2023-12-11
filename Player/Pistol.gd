@@ -1,7 +1,7 @@
 extends Node3D
 
 var Bullet_Hole = preload("res://Player/bullet_hole.tscn")
-
+var Dropped_gun = preload("res://Player/dropped_gun.tscn")
 
 func shoot():
 	$Muzzle.visible = true
@@ -25,3 +25,13 @@ func shoot():
 func _on_timer_timeout():
 	print("Timer timeout - hiding Muzzle")
 	$Muzzle.visible = false # Replace with function body.
+
+
+func drop():
+	var game = get_node_or_null("/root/Game")
+	if game != null:
+		var dropped_gun = Dropped_gun.instantiate()
+		game.add_child(dropped_gun)
+		dropped_gun.global_position = global_position
+		dropped_gun.linear_velocity = Vector3(0,1,-2)
+		queue_free()

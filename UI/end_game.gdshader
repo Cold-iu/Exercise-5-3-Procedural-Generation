@@ -4,7 +4,7 @@
 shader_type canvas_item;
 
 uniform float cloudscale = 1.1;
-uniform float speed = 0.1;
+uniform float speed = 0.01;
 uniform float clouddark = 0.5;
 uniform float cloudlight = 0.3;
 uniform float cloudcover = 0.2;

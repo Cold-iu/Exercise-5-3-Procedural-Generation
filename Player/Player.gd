@@ -15,7 +15,12 @@ func _unhandled_input(event):
 		$Pivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -MOUSE_RANGE, MOUSE_RANGE)
-
+	if event.is_action_pressed("Pickup"):
+		for w in $Pivot/Weapon.get_children():
+			if w.has_method("drop"):
+				w.drop()
+				
+				
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -52,6 +57,10 @@ func _physics_process(delta):
 			
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func pickup(weapon):
+	$Pivot/Weapon.add_child(weapon)
 
 func _on_pickup_radius_area_entered(area):
 	if area.name == "Key":

@@ -28,13 +28,18 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func die():
+	dying = true
 	$AnimationPlayer.play("Death")
+	velocity = Vector3.ZERO
 	$Timer.start()
 
 func _on_area_3d_body_entered(body):
 	if not dying:
 		attacking = true # Replace with function body.
 		$AnimationPlayer.play("Attack")
+		if $hit.is_colliding():
+			pass
+			
 
 func _on_area_3d_body_exited(body):
 	if not dying:
