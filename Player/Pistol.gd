@@ -5,6 +5,7 @@ var Dropped_gun = preload("res://Player/dropped_gun.tscn")
 
 func shoot():
 	$Muzzle.visible = true
+	$Sound.play()
 	$Timer.start()
 	if $Aim.is_colliding():
 		var target = $Aim.get_collider()
@@ -32,6 +33,6 @@ func drop():
 	if game != null:
 		var dropped_gun = Dropped_gun.instantiate()
 		game.add_child(dropped_gun)
-		dropped_gun.global_position = global_position
+		dropped_gun.global_position = global_position + Vector3(0,2,-1)
 		dropped_gun.linear_velocity = Vector3(0,1,-2)
 		queue_free()

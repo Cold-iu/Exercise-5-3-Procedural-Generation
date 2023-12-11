@@ -37,15 +37,22 @@ func _on_area_3d_body_entered(body):
 	if not dying:
 		attacking = true # Replace with function body.
 		$AnimationPlayer.play("Attack")
-		if $hit.is_colliding():
-			pass
+		$hit_check.start()
 			
 
 func _on_area_3d_body_exited(body):
 	if not dying:
 		attacking = false
-		$AnimationPlayer.play("Walk") # Replace with function body.
+		$AnimationPlayer.play("Walk")
+		$hit_check.stop() # Replace with function body.
 
 
 func _on_timer_timeout():
 	queue_free() # Replace with function body.
+
+
+func _on_hit_check_timeout():
+	for b in $Area3D.get_overlapping_bodies():
+		if b.has_method("die"):
+			b.die
+			# Replace with function body.

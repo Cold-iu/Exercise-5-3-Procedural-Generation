@@ -5397,14 +5397,14 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0143176, 0.586141, -0.728034)
 shape = SubResource("BoxShape3D_0veff")
 
+[node name="hit_check" type="Timer" parent="."]
+wait_time = 1.5
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
-[node name="hit" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98916, 0)
-target_position = Vector3(0, 0, -1)
-
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="hit_check" to="." method="_on_hit_check_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

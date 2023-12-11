@@ -7,6 +7,10 @@ const SCROLL_SPEED = 1.0
 const MOUSE_SENSITIVITY = 0.002
 const MOUSE_RANGE = .5
 
+var can_drop = true
+var health = 2
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -15,7 +19,7 @@ func _unhandled_input(event):
 		$Pivot.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -MOUSE_RANGE, MOUSE_RANGE)
-	if event.is_action_pressed("Pickup"):
+	if event.is_action_pressed("Pickup") and can_drop:
 		for w in $Pivot/Weapon.get_children():
 			if w.has_method("drop"):
 				w.drop()
@@ -60,6 +64,8 @@ func _ready():
 
 
 func pickup(weapon):
+	can_drop = false
+	$Pickup_Timer.start()
 	$Pivot/Weapon.add_child(weapon)
 
 func _on_pickup_radius_area_entered(area):
@@ -71,3 +77,13 @@ func _on_pickup_radius_area_entered(area):
 	elif area.name == "Victory":
 		get_tree().quit()
 		# Replace with function body.
+
+
+func _on_pickup_timer_timeout():
+	can_drop = true # Replace with function body.
+
+func die():
+	health -= 1
+	if health <= 0:
+		queue_free()
+	

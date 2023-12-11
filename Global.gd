@@ -15,14 +15,16 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("Menu"):	# instead of quitting, show the menu
-		var menu = get_node_or_null("/root/Game/Menu")
+		var menu = get_node_or_null("/root/Game/UI/Pause")
 		if menu == null:
 			get_tree().quit()
 		else:
 			if not menu.visible:
 				menu.show()
-				get_tree().paused = true 	# pause the game while the menu is visible
+				get_tree().paused = true
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE	# pause the game while the menu is visible
 			else:
 				menu.hide()
 				get_tree().paused = false
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
