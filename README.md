@@ -1,8 +1,6 @@
-# Exercise 5.3-Procedural Generation
+**3D GAME For MSCH-C220**
 
-Exercise for MSCH-C220
-
-An implementation of a procedurally-generated 3D maze. Also, a simple in-game menu.
+An implementation of a procedurally-generated 3D maze, simple in-game menus, weapon pickup/drop, dialogue test
 
 ## Implementation
 
@@ -10,11 +8,9 @@ Built using Godot 4.1.1
 
 ## References
 
-This project is an adaptation of the excellent tutorial from [KidsCanCode](https://kidscancode.org/blog/2018/08/godot3_procgen1/)
 
 ## Future Development
-
-None
+ TBA
 
 ## Created by 
 
