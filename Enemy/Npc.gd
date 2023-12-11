@@ -2,9 +2,9 @@ extends CharacterBody3D
 
 var d = 0
 var dialogue = [
-	"Awesome you escaped the maze..."
-	,"Be careful"
-	,"I heard there was a zombie in the woods"
+	"Awesome you escaped the maze!"
+	,"Proceed with caution"
+	,"Camp has been overrun with ZOMBIES!"
 
 ]
 
@@ -14,6 +14,7 @@ func _ready():
 
 func _on_area_3d_body_entered(body):
 	print("Entered dialogue")
+	$AnimationPlayer.play("Interact_Standing")
 	$Area3D.queue_free()
 	if d < dialogue.size():
 		$Dialogue.show()
@@ -30,6 +31,7 @@ func _on_timer_timeout():
 		$Dialogue/Control/Label.text = dialogue[d]
 		$Dialogue/Timer.start()
 	else:
+		$AnimationPlayer.play("Idle")
 		print("No more dialogue")
 		$Dialogue.queue_free()
 		

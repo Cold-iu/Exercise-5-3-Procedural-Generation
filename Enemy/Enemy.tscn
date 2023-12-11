@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://2r1ap5lgtt8n" path="res://zombieC.png" id="2_g6vi4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_riley"]
-radius = 0.247391
-height = 0.844664
+height = 2.09131
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjck0"]
 resource_name = "skin"
@@ -5055,7 +5054,7 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("1_4ndwe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301415, 0.354152, 2.08165e-12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301415, 0.874204, -0.0460181)
 shape = SubResource("CapsuleShape3D_riley")
 
 [node name="Root" type="Node3D" parent="."]
@@ -5390,6 +5389,7 @@ libraries = {
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10987)
 collision_layer = 4
 collision_mask = 4
 
@@ -5401,7 +5401,7 @@ shape = SubResource("BoxShape3D_0veff")
 wait_time = 1.5
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.5
 one_shot = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

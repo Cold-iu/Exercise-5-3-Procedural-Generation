@@ -6,7 +6,7 @@ const speed = 3.0
 
 var dying = false
 var attacking = false
-
+var life = 3
 
 func _ready():
 	$AnimationPlayer.play("Walk")
@@ -28,11 +28,12 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func die():
-	Global.update_kills(1)
-	dying = true
-	$AnimationPlayer.play("Death")
-	velocity = Vector3.ZERO
-	$Timer.start()
+	life -= 1
+	if life <= 0:
+		dying = true
+		$AnimationPlayer.play("Death")
+		velocity = Vector3.ZERO
+		$Timer.start()
 
 func _on_area_3d_body_entered(body):
 	if not dying:
@@ -49,7 +50,8 @@ func _on_area_3d_body_exited(body):
 
 
 func _on_timer_timeout():
-	queue_free() # Replace with function body.
+	queue_free()
+	Global.update_kills(1) # Replace with function body.
 
 
 func _on_hit_check_timeout():

@@ -87,7 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.84232, 0, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_dxbqo")
-autoplay = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -191,8 +190,14 @@ text = "Quit
 
 [node name="Enemy2" parent="." instance=ExtResource("5_3bm6d")]
 
+[node name="Enemy5" parent="." instance=ExtResource("5_3bm6d")]
+transform = Transform3D(0.370821, 0, -1.14127, 0, 1.2, 0, 1.14127, 0, 0.370821, 3.48797, 0, -3.93627)
+
 [node name="Enemy3" parent="." instance=ExtResource("5_3bm6d")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 8.44136, 1.62096, -10.8134)
+
+[node name="Enemy4" parent="." instance=ExtResource("5_3bm6d")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.42671, 0.589755, -19.3325)
 
 [connection signal="pressed" from="UI/Pause/Restart" to="UI/Pause" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Pause/Quit" to="UI/Pause" method="_on_quit_pressed"]
