@@ -54,5 +54,6 @@ func _on_timer_timeout():
 func _on_hit_check_timeout():
 	for b in $Area3D.get_overlapping_bodies():
 		if b.has_method("die"):
-			b.die
+			print(b, "has_method: die")
+			b.die()
 			# Replace with function body.

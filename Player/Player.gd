@@ -84,6 +84,7 @@ func _on_pickup_timer_timeout():
 
 func die():
 	health -= 1
+	print(health)
 	if health <= 0:
-		queue_free()
+		get_tree().change_scene_to_file("res://UI/end_game.tscn")
 	
