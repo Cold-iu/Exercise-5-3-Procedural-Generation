@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl2f35g3ao3ee"]
+[gd_scene load_steps=6 format=3 uid="uid://bl2f35g3ao3ee"]
 
 [ext_resource type="Theme" uid="uid://dmw8gaf1nv25r" path="res://UI/main_menu.tres" id="1_1s1tq"]
 [ext_resource type="Script" path="res://End_Game.gd" id="2_h805k"]
 [ext_resource type="Shader" path="res://UI/end_game.gdshader" id="3_ohoo8"]
+[ext_resource type="Texture2D" uid="uid://b1f8vc8dpdhhm" path="res://MAP.png" id="4_pi7pu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d1ymp"]
 shader = ExtResource("3_ohoo8")
@@ -35,6 +36,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(962, 541.25)
+scale = Vector2(1.63265, 1.98629)
+texture = ExtResource("4_pi7pu")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
