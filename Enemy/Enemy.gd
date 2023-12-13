@@ -2,14 +2,18 @@ extends CharacterBody3D
 
 
 @onready var NA =$NavigationAgent3D
-const speed = 3.0
+const speed = 3.
+var initial_pos = Vector3.ZERO
 
 var dying = false
 var attacking = false
 var life = 3
+var death_count = 0
+
 
 func _ready():
 	$AnimationPlayer.play("Walk")
+	initial_pos = global_transform.origin
 
 func _physics_process(delta):
 	var player = get_node_or_null("/root/Game/Player")
@@ -30,10 +34,20 @@ func _physics_process(delta):
 func die():
 	life -= 1
 	if life <= 0:
-		dying = true
-		$AnimationPlayer.play("Death")
-		velocity = Vector3.ZERO
-		$Timer.start()
+		if death_count <= 2:
+			if death_count == 2:
+				dying = true
+				$AnimationPlayer.play("Death")
+				velocity = Vector3.ZERO
+				$Timer.start()
+			else:
+				death_count += 1
+				dying = true
+				$AnimationPlayer.play("Death")
+				velocity = Vector3.ZERO
+				$Timer.start()
+	
+		
 
 func _on_area_3d_body_entered(body):
 	if not dying:
@@ -50,8 +64,13 @@ func _on_area_3d_body_exited(body):
 
 
 func _on_timer_timeout():
-	queue_free()
-	Global.update_kills(1) # Replace with function body.
+	if death_count < 2:
+		Global.update_kills(1)
+		respawn()
+	else:
+		Global.update_kills(1)
+		queue_free()
+	# Replace with function body.
 
 
 func _on_hit_check_timeout():
@@ -60,3 +79,10 @@ func _on_hit_check_timeout():
 			print(b, "has_method: die")
 			b.die()
 			# Replace with function body.
+
+
+func respawn():
+	life = 3
+	global_transform.origin = initial_pos
+	dying = false
+	$AnimationPlayer.play("Walk")
