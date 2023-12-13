@@ -36,11 +36,13 @@ func die():
 	if life <= 0:
 		if death_count <= 2:
 			if death_count == 2:
+				$CollisionShape3D.disabled = true
 				dying = true
 				$AnimationPlayer.play("Death")
 				velocity = Vector3.ZERO
 				$Timer.start()
 			else:
+				$CollisionShape3D.disabled = true
 				death_count += 1
 				dying = true
 				$AnimationPlayer.play("Death")
@@ -82,6 +84,7 @@ func _on_hit_check_timeout():
 
 
 func respawn():
+	$CollisionShape3D.disabled = false
 	life = 3
 	global_transform.origin = initial_pos
 	dying = false

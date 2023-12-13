@@ -1,10 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://ya8k1gil5qa6"]
+[gd_scene load_steps=24 format=3 uid="uid://ya8k1gil5qa6"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy.gd" id="1_4ndwe"]
 [ext_resource type="Texture2D" uid="uid://2r1ap5lgtt8n" path="res://zombieC.png" id="2_g6vi4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_riley"]
+radius = 0.219691
 height = 2.09131
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jocoj"]
+size = Vector3(0.422808, 0.001, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjck0"]
 resource_name = "skin"
@@ -5054,8 +5058,16 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 script = ExtResource("1_4ndwe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301415, 0.874204, -0.0460181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000946401, 0.874204, -0.0460181)
 shape = SubResource("CapsuleShape3D_riley")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_jocoj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="CollisionShape3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.711034, 0.151322)
+shape = SubResource("BoxShape3D_jocoj")
 
 [node name="Root" type="Node3D" parent="."]
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0, 0)
