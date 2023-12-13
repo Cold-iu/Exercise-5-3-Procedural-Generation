@@ -37,7 +37,7 @@ func _physics_process(delta):
 			$Overhead.current = true
 			
 	if Global.kills == 10:
-		get_tree().change_scene_to_file("res://UI/secret_ending.tscn")
+		get_tree().change_scene_to_file("res://UI/zombies_defeated.tscn")
 		
 	if Input.is_action_just_pressed("shoot"):
 		var weapons = $Pivot/Weapon

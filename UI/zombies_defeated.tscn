@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl2f35g3ao3ee"]
+
+[ext_resource type="Theme" uid="uid://dmw8gaf1nv25r" path="res://UI/main_menu.tres" id="1_1s1tq"]
+[ext_resource type="Script" path="res://End_Game.gd" id="2_h805k"]
+[ext_resource type="Shader" path="res://UI/end_game.gdshader" id="3_ohoo8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1ymp"]
+shader = ExtResource("3_ohoo8")
+shader_parameter/cloudscale = 1.1
+shader_parameter/speed = 0.01
+shader_parameter/clouddark = 0.5
+shader_parameter/cloudlight = 0.3
+shader_parameter/cloudcover = 0.2
+shader_parameter/cloudalpha = 8.0
+shader_parameter/skytint = 0.5
+shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
+shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
+shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+
+[node name="End_Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1s1tq")
+script = ExtResource("2_h805k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_d1ymp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -310.0
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "You defeated all the zombies and saved the camp!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_top = -15.5
+offset_right = -1020.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 525.0
+offset_right = 1700.0
+offset_bottom = 600.0
+text = "Quit
+"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
