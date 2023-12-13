@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d1dl50r66hkos"]
+
+[node name="portal" type="CSGCylinder3D"]
+height = 0.002
+
+[node name="center" type="Node3D" parent="."]

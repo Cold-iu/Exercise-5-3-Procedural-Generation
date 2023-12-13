@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtheyvxv54yee"]
+[gd_scene load_steps=17 format=3 uid="uid://dtheyvxv54yee"]
 
 [ext_resource type="Script" path="res://Player/game.gd" id="1_orslv"]
 [ext_resource type="PackedScene" uid="uid://cotthwyesfrbn" path="res://Maze/Terrain/map.tscn" id="1_sbt22"]
@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://dmw8gaf1nv25r" path="res://UI/main_menu.tres" id="7_qvirb"]
 [ext_resource type="Script" path="res://Player/Pause.gd" id="8_vwkew"]
 [ext_resource type="Script" path="res://Player/HUD.gd" id="9_2rgfk"]
+[ext_resource type="PackedScene" uid="uid://d1dl50r66hkos" path="res://portal.tscn" id="12_1jtqg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jsmrk"]
 shader = ExtResource("2_p1omt")
@@ -198,6 +199,9 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 8.44136, 1.62096, -10.8
 
 [node name="Enemy4" parent="." instance=ExtResource("5_3bm6d")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -8.42671, 0.589755, -19.3325)
+
+[node name="portal" parent="." instance=ExtResource("12_1jtqg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0141, 0, -23.327)
 
 [connection signal="pressed" from="UI/Pause/Restart" to="UI/Pause" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Pause/Quit" to="UI/Pause" method="_on_quit_pressed"]
